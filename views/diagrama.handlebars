@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagrama</title>
+<!-- Copyright 1998-2017 by Northwoods Software Corporation. -->
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://diagramas-ksantacr.c9users.io/css/estilos.css">
+<!--<script src="js/go-debug.js"></script>-->
+<script src="https://diagramas-ksantacr.c9users.io/js/jquery.js"></script>
+<script src="https://diagramas-ksantacr.c9users.io/js/go.js"></script>
+<script id="code">
+//arregloFlechas = ["Circle", "Chevron", "Diamond", "Triangle"];
+
+if(localStorage.getItem('c')==null){
+  localStorage.setItem('c','1');
+}
+
+
+console.log("localstorage1"+localStorage.getItem("figura_flecha_"));
+
+ cambiarFlecha = function(){
+  
+  var texto = localStorage.getItem("figura_flecha_");
+  
+  
+  localStorage.setItem('c','2');
+  //console.log("Valor--->"+texto);
+  
+  
+  switch(texto){
+    case 'Circle': 
+      localStorage.setItem("figura_flecha_", "PentagonArrow");
+      console.log("Circle a PentagonArrow");
+      break;
+    case 'PentagonArrow': 
+      
+      localStorage.setItem("figura_flecha_", "NormalArrow");console.log("PentagonArrow a NormalArrow");
+      break;
+    case 'NormalArrow': 
+     
+      localStorage.setItem("figura_flecha_", "Circle");console.log("NormalArrow a Circle");
+      break;
+    
+  }
+  //localStorage.setItem('c','3');
+  //localStorage.setItem('c','0');
+  
+  //console.log("localstorage2"+localStorage.getItem("figura_flecha_"));
+  //setTimeout(function(){ location.reload(); }, 10);
+  location.reload();
+  //console.log("clicked")
+  //load();
+  
+}
+
+
+
+//figuras-
+     // Typical custom definition:
+go.Shape.defineArrowheadGeometry("Zigzag", "M0,4 L1,8 3,0 5,8 7,0 8,4");
+go.Shape.defineArrowheadGeometry("Standard", "F1 m 0,0 l 8,4 -8,4 2,-4 z");
+go.Shape.defineArrowheadGeometry("Backward", "F1 m 8,0 l -2,4 2,4 -8,-4 z");
+go.Shape.defineArrowheadGeometry("Triangle", "F1 m 0,0 l 8,4.62 -8,4.62 z");
+go.Shape.defineArrowheadGeometry("BackwardTriangle", "F1 m 8,4 l 0,4 -8,-4 8,-4 0,4 z");
+go.Shape.defineArrowheadGeometry("Boomerang", "F1 m 0,0 l 8,4 -8,4 4,-4 -4,-4 z");
+go.Shape.defineArrowheadGeometry("BackwardBoomerang", "F1 m 8,0 l -8,4 8,4 -4,-4 4,-4 z");
+go.Shape.defineArrowheadGeometry("SidewaysV", "m 0,0 l 8,4 -8,4 0,-1 6,-3 -6,-3 0,-1 z");
+go.Shape.defineArrowheadGeometry("BackwardV", "m 8,0 l -8,4 8,4 0,-1 -6,-3 6,-3 0,-1 z");
+
+go.Shape.defineArrowheadGeometry("OpenTriangle", "m 0,0 l 8,4 -8,4");
+go.Shape.defineArrowheadGeometry("BackwardOpenTriangle", "m 8,0 l -8,4 8,4");
+go.Shape.defineArrowheadGeometry("OpenTriangleLine", "m 0,0 l 8,4 -8,4 m 8.5,0 l 0,-8");
+go.Shape.defineArrowheadGeometry("BackwardOpenTriangleLine", "m 8,0 l  -8,4 8,4 m -8.5,0 l 0,-8");
+
+go.Shape.defineArrowheadGeometry("OpenTriangleTop", "m 0,0 l 8,4 m 0,4");
+go.Shape.defineArrowheadGeometry("BackwardOpenTriangleTop", "m 8,0 l -8,4 m 0,4");
+go.Shape.defineArrowheadGeometry("OpenTriangleBottom", "m 0,8 l 8,-4");
+go.Shape.defineArrowheadGeometry("BackwardOpenTriangleBottom", "m 0,4 l 8,4");
+
+go.Shape.defineArrowheadGeometry("HalfTriangleTop", "F1 m 0,0 l 0,4 8,0 z m 0,8");
+go.Shape.defineArrowheadGeometry("BackwardHalfTriangleTop", "F1 m 8,0 l 0,4 -8,0 z m 0,8");
+go.Shape.defineArrowheadGeometry("HalfTriangleBottom", "F1 m 0,4 l 0,4 8,-4 z");
+go.Shape.defineArrowheadGeometry("BackwardHalfTriangleBottom", "F1 m 8,4 l 0,4 -8,-4 z");
+
+go.Shape.defineArrowheadGeometry("ForwardSemiCircle", "m 4,0 b 270 180 0 4 4");
+go.Shape.defineArrowheadGeometry("BackwardSemiCircle", "m 4,8 b 90 180 0 -4 4");
+
+go.Shape.defineArrowheadGeometry("Feather", "m 0,0 l 3,4 -3,4");
+go.Shape.defineArrowheadGeometry("BackwardFeather", "m 3,0 l -3,4 3,4");
+go.Shape.defineArrowheadGeometry("DoubleFeathers", "m 0,0 l 3,4 -3,4 m 3,-8 l 3,4 -3,4");
+go.Shape.defineArrowheadGeometry("BackwardDoubleFeathers", "m 3,0 l -3,4 3,4 m 3,-8 l -3,4 3,4");
+go.Shape.defineArrowheadGeometry("TripleFeathers", "m 0,0 l 3,4 -3,4 m 3,-8 l 3,4 -3,4 m 3,-8 l 3,4 -3,4");
+go.Shape.defineArrowheadGeometry("BackwardTripleFeathers", "m 3,0 l -3,4 3,4 m 3,-8 l -3,4 3,4 m 3,-8 l -3,4 3,4");
+
+go.Shape.defineArrowheadGeometry("ForwardSlash", "m 0,8 l 5,-8");
+go.Shape.defineArrowheadGeometry("BackSlash", "m 0,0 l 5,8");
+go.Shape.defineArrowheadGeometry("DoubleForwardSlash", "m 0,8 l 4,-8 m -2,8 l 4,-8");
+go.Shape.defineArrowheadGeometry("DoubleBackSlash", "m 0,0 l 4,8 m -2,-8 l 4,8");
+go.Shape.defineArrowheadGeometry("TripleForwardSlash", "m 0,8 l 4,-8 m -2,8 l 4,-8 m -2,8 l 4,-8");
+go.Shape.defineArrowheadGeometry("TripleBackSlash", "m 0,0 l 4,8 m -2,-8 l 4,8 m -2,-8 l 4,8");
+
+go.Shape.defineArrowheadGeometry("Fork", "m 0,4 l 8,0 m -8,0 l 8,-4 m -8,4 l 8,4");
+go.Shape.defineArrowheadGeometry("BackwardFork", "m 8,4 l -8,0 m 8,0 l -8,-4 m 8,4 l -8,4");
+go.Shape.defineArrowheadGeometry("LineFork", "m 0,0 l 0,8 m 0,-4 l 8,0 m -8,0 l 8,-4 m -8,4 l 8,4");
+go.Shape.defineArrowheadGeometry("BackwardLineFork", "m 8,4 l -8,0 m 8,0 l -8,-4 m 8,4 l -8,4 m 8,-8 l 0,8");
+go.Shape.defineArrowheadGeometry("CircleFork", "F1 m 6,4 b 0 360 -3 0 3 z m 0,0 l 6,0 m -6,0 l 6,-4 m -6,4 l 6,4");
+go.Shape.defineArrowheadGeometry("BackwardCircleFork", "F1 m 0,4 l 6,0 m -6,-4 l 6,4 m -6,4 l 6,-4 m 6,0 b 0 360 -3 0 3");
+go.Shape.defineArrowheadGeometry("CircleLineFork", "F1 m 6,4 b 0 360 -3 0 3 z m 1,-4 l 0,8 m 0,-4 l 6,0 m -6,0 l 6,-4 m -6,4 l 6,4");
+go.Shape.defineArrowheadGeometry("BackwardCircleLineFork", "F1 m 0,4 l 6,0 m -6,-4 l 6,4 m -6,4 l 6,-4 m 0,-4 l 0,8 m 7,-4 b 0 360 -3 0 3");
+
+go.Shape.defineArrowheadGeometry("Circle", "F1 m 8,4 b 0 360 -4 0 4 z");
+go.Shape.defineArrowheadGeometry("Block", "F1 m 0,0 l 0,8 8,0 0,-8 z");
+go.Shape.defineArrowheadGeometry("StretchedDiamond", "F1 m 0,3 l 5,-3 5,3 -5,3 -5,-3 z");
+go.Shape.defineArrowheadGeometry("Diamond", "F1 m 0,4 l 4,-4 4,4 -4,4 -4,-4 z");
+go.Shape.defineArrowheadGeometry("Chevron", "F1 m 0,0 l 5,0 3,4 -3,4 -5,0 3,-4 -3,-4 z");
+go.Shape.defineArrowheadGeometry("StretchedChevron", "F1 m 0,0 l 8,0 3,4 -3,4 -8,0 3,-4 -3,-4 z");
+
+go.Shape.defineArrowheadGeometry("NormalArrow", "F1 m 0,2 l 4,0 0,-2 4,4 -4,4 0,-2 -4,0 z");
+go.Shape.defineArrowheadGeometry("X", "m 0,0 l 8,8 m 0,-8 l -8,8");
+go.Shape.defineArrowheadGeometry("TailedNormalArrow", "F1 m 0,0 l 2,0 1,2 3,0 0,-2 2,4 -2,4 0,-2 -3,0 -1,2 -2,0 1,-4 -1,-4 z");
+go.Shape.defineArrowheadGeometry("DoubleTriangle", "F1 m 0,0 l 4,4 -4,4 0,-8 z  m 4,0 l 4,4 -4,4 0,-8 z");
+go.Shape.defineArrowheadGeometry("BigEndArrow" , "F1 m 0,0 l 5,2 0,-2 3,4 -3,4 0,-2 -5,2 0,-8 z");
+go.Shape.defineArrowheadGeometry("ConcaveTailArrow", "F1 m 0,2 h 4 v -2 l 4,4 -4,4 v -2 h -4 l 2,-2 -2,-2 z");
+go.Shape.defineArrowheadGeometry("RoundedTriangle", "F1 m 0,1 a 1,1 0 0 1 1,-1 l 7,3 a 0.5,1 0 0 1 0,2 l -7,3 a 1,1 0 0 1 -1,-1 l 0,-6 z");
+go.Shape.defineArrowheadGeometry("SimpleArrow", "F1 m 1,2 l -1,-2 2,0 1,2 -1,2 -2,0 1,-2 5,0 0,-2 2,2 -2,2 0,-2 z");
+go.Shape.defineArrowheadGeometry("AccelerationArrow" , "F1 m 0,0 l 0,8 0.2,0 0,-8 -0.2,0 z m 2,0 l 0,8 1,0 0,-8 -1,0 z m 3,0 l 2,0 2,4 -2,4 -2,0 0,-8 z");
+go.Shape.defineArrowheadGeometry("BoxArrow" , "F1 m 0,0 l 4,0 0,2 2,0 0,-2 2,4 -2,4 0,-2 -2,0 0,2 -4,0 0,-8 z");
+go.Shape.defineArrowheadGeometry("TriangleLine" , "F1 m 8,4 l -8,-4 0,8 8,-4 z m 0.5,4 l 0,-8");
+
+go.Shape.defineArrowheadGeometry("CircleEndedArrow" , "F1 m 10,4 l -2,-3 0,2 -2,0 0,2 2,0 0,2 2,-3 z m -4,0 b 0 360 -3 0 3 z");
+
+go.Shape.defineArrowheadGeometry("DynamicWidthArrow" , "F1 m 0,3 l 2,0 2,-1 2,-2 2,4 -2,4 -2,-2 -2,-1 -2,0 0,-2 z");
+go.Shape.defineArrowheadGeometry("EquilibriumArrow" , "m 0,3 l 8,0 -3,-3 m 3,5 l -8,0 3,3");
+go.Shape.defineArrowheadGeometry("FastForward" , "F1 m 0,0 l 3.5,4 0,-4 3.5,4 0,-4 1,0 0,8 -1,0 0,-4 -3.5,4 0,-4 -3.5,4 0,-8 z");
+go.Shape.defineArrowheadGeometry("Kite", "F1 m 0,4 l 2,-4 6,4 -6,4 -2,-4 z");
+go.Shape.defineArrowheadGeometry("HalfArrowTop", "F1 m 0,0 l 4,4 4,0 -8,-4 z m 0,8");
+go.Shape.defineArrowheadGeometry("HalfArrowBottom", "F1 m 0,8 l 4,-4 4,0 -8,4 z");
+go.Shape.defineArrowheadGeometry("OpposingDirectionDoubleArrow" , "F1 m 0,4 l 2,-4 0,2 4,0 0,-2 2,4 -2,4 0,-2 -4,0 0,2 -2,-4 z");
+go.Shape.defineArrowheadGeometry("PartialDoubleTriangle" , "F1 m 0,0 4,3 0,-3 4,4 -4,4 0,-3 -4,3 0,-8 z");
+go.Shape.defineArrowheadGeometry("LineCircle", "F1 m 0,0 l 0,8 m 7 -4 b 0 360 -3 0 3 z");
+go.Shape.defineArrowheadGeometry("DoubleLineCircle" , "F1 m 0,0 l 0,8 m 2,-8 l 0,8 m 7 -4 b 0 360 -3 0 3 z");
+go.Shape.defineArrowheadGeometry("TripleLineCircle" , "F1 m 0,0 l 0,8 m 2,-8 l 0,8 m 2,-8 l 0,8 m 7 -4 b 0 360 -3 0 3 z");
+go.Shape.defineArrowheadGeometry("CircleLine" , "F1 m 6 4 b 0 360 -3 0 3 z m 1,-4 l 0,8");
+go.Shape.defineArrowheadGeometry("DiamondCircle", "F1 m 8,4 l -4,4 -4,-4 4,-4 4,4 m 8,0 b 0 360 -4 0 4 z");
+go.Shape.defineArrowheadGeometry("PlusCircle" , "F1 m 8,4 b 0 360 -4 0 4 l -8 0 z m -4 -4 l 0 8");
+go.Shape.defineArrowheadGeometry("OpenRightTriangleTop", "m 8,0 l 0,4 -8,0 m 0,4");
+go.Shape.defineArrowheadGeometry("OpenRightTriangleBottom" , "m 8,8 l 0,-4 -8,0");
+go.Shape.defineArrowheadGeometry("Line", "m 0,0 l 0,8");
+go.Shape.defineArrowheadGeometry("DoubleLine", "m 0,0 l 0,8 m 2,0 l 0,-8");
+go.Shape.defineArrowheadGeometry("TripleLine", "m 0,0 l 0,8 m 2,0 l 0,-8 m 2,0 l 0,8");
+go.Shape.defineArrowheadGeometry("PentagonArrow", "F1 m 8,4 l -4,-4 -4,0 0,8 4,0 4,-4 z");
+
+
+//finfiguras-
+
+  //var colores = ["#00AD5F", "lightskyblue","#CE0620", "lightyellow" ];
+
+  // This method is called as a context menu button's click handler.
+  // Rotate the selected node's color through a predefined sequence of colors.
+  function changeColor(e, obj) {
+    myDiagram.startTransaction("changed color");
+    // get the context menu that holds the button that was clicked
+    var contextmenu = obj.part;
+    // get the node data to which the Node is data bound
+    var nodedata = contextmenu.data;
+    // compute the next color for the node
+    var newcolor = "lightblue";
+    switch (nodedata.fill) {
+      case "lightblue": newcolor = "lightgreen"; break;
+      case "lightgreen": newcolor = "lightyellow"; break;
+      case "lightyellow": newcolor = "orange"; break;
+      case "orange": newcolor = "lightblue"; break;
+      case "tomato": newcolor = "lightgreen"; break;
+    }
+    // modify the node data
+    // this evaluates data Bindings and records changes in the UndoManager
+    myDiagram.model.setDataProperty(nodedata, "fill", newcolor);
+    myDiagram.commitTransaction("changed color");
+  }
+  function init() {
+    //var a ;
+    //if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+    var $ = go.GraphObject.make;  // for conciseness in defining templates
+
+    myDiagram =
+      $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+        {
+          /*grid: $(go.Panel, "Grid",
+                  $(go.Shape, "LineH", { stroke: "lightgray", strokeWidth: 0.5 }),
+                  $(go.Shape, "LineH", { stroke: "gray", strokeWidth: 0.5, interval: 10 }),
+                  $(go.Shape, "LineV", { stroke: "lightgray", strokeWidth: 0.5 }),
+                  $(go.Shape, "LineV", { stroke: "gray", strokeWidth: 0.5, interval: 10 })
+                ),*/
+          allowDrop: true,  // must be true to accept drops from the Palette
+          "draggingTool.dragsLink": true,
+          "draggingTool.isGridSnapEnabled": true,
+          "linkingTool.isUnconnectedLinkValid": true,
+          "linkingTool.portGravity": 20,
+          "relinkingTool.isUnconnectedLinkValid": true,
+          "relinkingTool.portGravity": 20,
+          "relinkingTool.fromHandleArchetype":
+            $(go.Shape, "Diamond", { segmentIndex: 0, cursor: "pointer", desiredSize: new go.Size(8, 8), fill: "black", stroke: "white" }),
+          "relinkingTool.toHandleArchetype":
+            $(go.Shape, "Diamond", { segmentIndex: -1, cursor: "pointer", desiredSize: new go.Size(8, 8), fill: "black", stroke: "white" }),
+          "linkReshapingTool.handleArchetype":
+            $(go.Shape, "Diamond", { desiredSize: new go.Size(7, 7), fill: "red", stroke: "green" }),
+          rotatingTool: $(TopRotatingTool),  // defined below
+          "rotatingTool.snapAngleMultiple": 15,
+          "rotatingTool.snapAngleEpsilon": 15,
+          "undoManager.isEnabled": true
+        });
+
+
+    myDiagram.addDiagramListener("Modified", function(e) {
+
+      console.log("Diagrama modificado");
+
+      var button = document.getElementById("SaveButton");
+      if (button) button.disabled = !myDiagram.isModified;
+      var idx = document.title.indexOf("*");
+      if (myDiagram.isModified) {
+        if (idx < 0) document.title += "*";
+      } else {
+        if (idx >= 0) document.title = document.title.substr(0, idx);
+      }
+      //console.log("INDICE"+idx);
+    });
+
+    // Define a function for creating a "port" that is normally transparent.
+    // The "name" is used as the GraphObject.portId, the "spot" is used to control how links connect
+    // and where the port is positioned on the node, and the boolean "output" and "input" arguments
+    // control whether the user can draw links from or to the port.
+    function makePort(name, spot, output, input) {
+      // the port is basically just a small transparent square
+      return $(go.Shape, "Circle",
+               {
+                  fill: null,  // not seen, by default; set to a translucent gray by showSmallPorts, defined below
+                  stroke: null,
+                  desiredSize: new go.Size(7, 7),
+                  alignment: spot,  // align the port on the main Shape
+                  alignmentFocus: spot,  // just inside the Shape
+                  portId: name,  // declare this object to be a "port"
+                  fromSpot: spot, toSpot: spot,  // declare where links may connect at this port
+                  fromLinkable: output, toLinkable: input,  // declare whether the user may draw links to/from here
+                  cursor: "pointer"  // show a different cursor to indicate potential link point
+               });
+    }
+
+    var nodeSelectionAdornmentTemplate =
+      $(go.Adornment, "Auto",
+        $(go.Shape, { fill: null, stroke: "deepskyblue", strokeWidth: 1.5, strokeDashArray: [4, 2] }),
+        $(go.Placeholder)
+      );
+
+    var nodeResizeAdornmentTemplate =
+      $(go.Adornment, "Spot",
+        { locationSpot: go.Spot.Right },
+        $(go.Placeholder),
+        $(go.Shape, { alignment: go.Spot.TopLeft, cursor: "nw-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { alignment: go.Spot.Top, cursor: "n-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { alignment: go.Spot.TopRight, cursor: "ne-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+
+        $(go.Shape, { alignment: go.Spot.Left, cursor: "w-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { alignment: go.Spot.Right, cursor: "e-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+
+        $(go.Shape, { alignment: go.Spot.BottomLeft, cursor: "se-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { alignment: go.Spot.Bottom, cursor: "s-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { alignment: go.Spot.BottomRight, cursor: "sw-resize", desiredSize: new go.Size(6, 6), fill: "lightblue", stroke: "deepskyblue" })
+      );
+
+    var nodeRotateAdornmentTemplate =
+      $(go.Adornment,
+        { locationSpot: go.Spot.Center, locationObjectName: "CIRCLE" },
+        $(go.Shape, "Circle", { name: "CIRCLE", cursor: "pointer", desiredSize: new go.Size(7, 7), fill: "lightblue", stroke: "deepskyblue" }),
+        $(go.Shape, { geometryString: "M3.5 7 L3.5 30", isGeometryPositioned: true, stroke: "deepskyblue", strokeWidth: 1.5, strokeDashArray: [4, 2] })
+      );
+
+      myDiagram.nodeTemplate =
+      $(go.Node, "Spot",
+        { locationSpot: go.Spot.Center },
+        new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+        { selectable: true, selectionAdornmentTemplate: nodeSelectionAdornmentTemplate },
+        { resizable: true, resizeObjectName: "PANEL", resizeAdornmentTemplate: nodeResizeAdornmentTemplate },
+        { rotatable: true, rotateAdornmentTemplate: nodeRotateAdornmentTemplate },
+        new go.Binding("angle").makeTwoWay(),
+        // the main object is a Panel that surrounds a TextBlock with a Shape
+        $(go.Panel, "Auto",
+          { name: "PANEL" },
+          new go.Binding("desiredSize", "size", go.Size.parse).makeTwoWay(go.Size.stringify),
+          $(go.Shape, "Rectangle",  // default figure
+            {
+              portId: "", // the default port: if no spot on link data, use closest side
+              fromLinkable: true, toLinkable: true, cursor: "pointer",
+              fill: "white",  // default color
+              strokeWidth: 2
+            },
+            new go.Binding("figure"),
+            new go.Binding("fill")),
+          $(go.TextBlock,
+            {
+              font: "bold 11pt Helvetica, Arial, sans-serif",
+              margin: 8,
+              maxSize: new go.Size(160, NaN),
+              wrap: go.TextBlock.WrapFit,
+              editable: true
+            },
+            new go.Binding("text").makeTwoWay())
+        ),
+
+        //Funcion para editar el color de la figura con click derecho
+      {
+        contextMenu:     // define a context menu for each node
+          $(go.Adornment, "Vertical",  // that has one button
+            $("ContextMenuButton",
+              $(go.TextBlock, "Cambiar color"),
+              { click: changeColor })
+            // more ContextMenuButtons would go here
+          )  // end Adornment
+      },
+
+        // four small named ports, one on each side:
+        makePort("T", go.Spot.Top, false, true),
+        makePort("L", go.Spot.Left, true, true),
+        makePort("R", go.Spot.Right, true, true),
+        makePort("B", go.Spot.Bottom, true, false),
+        { // handle mouse enter/leave events to show/hide the ports
+          mouseEnter: function(e, node) { showSmallPorts(node, true); },
+          mouseLeave: function(e, node) { showSmallPorts(node, false); }
+        }
+      );
+
+    function showSmallPorts(node, show) {
+      node.ports.each(function(port) {
+        if (port.portId !== "") {  // don't change the default port, which is the big shape
+          port.fill = show ? "rgba(0,0,0,.3)" : null;
+        }
+      });
+    }
+    
+    
+    
+
+    
+    var linkSelectionAdornmentTemplate =
+      $(go.Adornment, "Link",
+        $(go.Shape,
+          // isPanelMain declares that this Shape shares the Link.geometry
+          { isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0 })  // use selection object's strokeWidth
+      );
+
+    myDiagram.linkTemplate =
+      $(go.Link,  // the whole link panel
+        { selectable: true, selectionAdornmentTemplate: linkSelectionAdornmentTemplate },
+        { relinkableFrom: true, relinkableTo: true, reshapable: true },
+        {
+          routing: go.Link.AvoidsNodes,
+          curve: go.Link.JumpOver,
+          corner: 5,
+          toShortLength: 4
+        },
+        new go.Binding("points").makeTwoWay(),
+        $(go.Shape,  // the link path shape
+          { isPanelMain: true, strokeWidth: 3 }),
+
+/*$(go.Shape,   // the "from" end arrowhead
+        { fromArrow: "Chevron" }),*///Activar flecha al inicio
+
+        $(go.Shape,  // the arrowhead
+         
+        //$(go.Shape,   // the "from" end arrowhead
+          /*{ fromArrow: "Chevron" , stroke: "black"},*/
+          //{ toArrow: "StretchedDiamond", stroke: "red" }), //Forma de la flecha
+          
+          
+          
+          
+          { toArrow:  localStorage.getItem("figura_flecha_") , fill: "red"}),
+          //{ toArrow:  "flechaZigzag" ||  "flecha" ||  "flechatriangulo" , fill: "gray"}),
+          
+        $(go.Panel, "Auto",
+          new go.Binding("visible", "isSelected").ofObject(),
+          $(go.Shape, "RoundedRectangle",  // the link shape
+            { fill: "#F8F8F8", stroke: null },
+            {click: function (e, obj) {
+              console.log("le di click");
+          }}),
+          $(go.TextBlock,
+            {
+              textAlign: "center",
+              font: "10pt helvetica, arial, sans-serif",
+              stroke: "#919191",
+              margin: 2,
+              minSize: new go.Size(10, NaN),
+              editable: true
+            },
+            new go.Binding("text").makeTwoWay())
+        )
+      );
+    
+
+    
+    //load();  // load an initial diagram from some JSON text
+    // initialize the Palette that is on the left side of the page
+    myPalette =
+      $(go.Palette, "myPaletteDiv",  // must name or refer to the DIV HTML element
+        {
+          maxSelectionCount: 1,
+          nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
+          linkTemplate: // simplify the link template, just in this Palette
+            $(go.Link,
+              { // because the GridLayout.alignment is Location and the nodes have locationSpot == Spot.Center,
+                // to line up the Link in the same manner we have to pretend the Link has the same location spot
+                locationSpot: go.Spot.Center,
+                selectionAdornmentTemplate:
+                  $(go.Adornment, "Link",
+                    { locationSpot: go.Spot.Center },
+                    $(go.Shape,
+                      { isPanelMain: true, fill: null, stroke: "deepskyblue", strokeWidth: 0 }),
+                    $(go.Shape,  // the arrowhead
+                      { toArrow: "Circle", stroke: "green" })
+
+                  )
+              },
+              {
+                routing: go.Link.AvoidsNodes,
+                curve: go.Link.JumpOver,
+                corner: 5,
+                toShortLength: 4
+              },
+              new go.Binding("points"),
+              $(go.Shape,  // the link path shape
+                { isPanelMain: true, strokeWidth: 2 }),
+              $(go.Shape,  // the arrowhead
+                { toArrow: "Diamond", stroke: "red" }),
+      /*$(go.Shape,   // the "from" end arrowhead
+        { fromArrow: "Chevron" }),*/
+      $(go.Shape,   // the "to" end arrowhead
+        { toArrow: "Circle", fill: "red" })
+            ),
+          model: new go.GraphLinksModel([  // specify the contents of the Palette
+            { text: "Inicio", figure: "Circle", fill: "#00AD5F" },
+            { text: "Paso" },
+            //{ text: "triangulo", figure: "Triangle", fill: "lightgray" },//agregar figura
+            { text: "Condición", figure: "Diamond", fill: "lightskyblue" },
+            { text: "Fin", figure: "Circle", fill: "#CE0620" },
+            { text: "Comentario", figure: "RoundedRectangle", fill: "lightyellow" }
+            //
+          ], [
+            // the Palette also has a disconnected Link, which the user can drag-and-drop
+            { points: new go.List(go.Point).addAll([new go.Point(0, 0), new go.Point(30, 0), new go.Point(30, 40), new go.Point(60, 40)]) }
+          ])
+        });
+  }
+
+
+  function TopRotatingTool() {
+    go.RotatingTool.call(this);
+  }
+  go.Diagram.inherit(TopRotatingTool, go.RotatingTool);
+
+  /** @override */
+  TopRotatingTool.prototype.updateAdornments = function(part) {
+    go.RotatingTool.prototype.updateAdornments.call(this, part);
+    var adornment = part.findAdornment("Rotating");
+    if (adornment !== null) {
+      adornment.location = part.rotateObject.getDocumentPoint(new go.Spot(0.5, 0, 0, -30));  // above middle top
+    }
+  };
+
+  /** @override */
+  TopRotatingTool.prototype.rotate = function(newangle) {
+    go.RotatingTool.prototype.rotate.call(this, newangle + 90);
+  };
+  // end of TopRotatingTool class
+
+
+  // Show the diagram's model in JSON format that the user may edit
+  function save() {
+    //console.log("Inicio Datos guardados");
+    saveDiagramProperties();  // do this first, before writing to JSON
+    document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+    var info_recibida= document.getElementById("mySavedModel").value;
+    var info_enviar=  $.parseJSON(info_recibida);
+    /*
+    $.post('https://diagramas-ksantacr.c9users.io/api/diagramas/'+idDiagrama, { }, 
+        function(returnedData){
+             console.log(returnedData);
+    }).fail(function(e){
+          console.log("error"+e);
+    });*/
+    
+    //console.log("---->"+informacion.flecha);
+    //global= informacion;
+    
+    
+    
+    $.ajax({
+      url: 'https://diagramas-ksantacr.c9users.io/api/puntos/'+idDiagrama+'',
+      type: 'DELETE',
+      success: function(result) {
+        
+        info_enviar.linkDataArray.forEach(function(node){
+        node.idDiagrama= idDiagrama;
+        res ="";
+        console.log("Nodo"+node);
+          for(i=0; i<node.points.length-1;i++){
+            res+=""+node.points[i]+",";
+          }
+          res+=""+node.points[node.points.length-1];
+          console.log("RES "+ res);
+          $.ajax({
+            type: "POST",
+            url: 'https://diagramas-ksantacr.c9users.io/api/puntos/'+idDiagrama+'',
+            data: {"points":res, "from":0, "to":0},
+            //data: {"idDiagrama":idDiagrama , "text":"por ajax", "figure":"Circle", "fill":"blue","key":-3,"loc":"100 100" },
+            success: function(respuesta){
+              //console.table(respuesta);
+              console.log(respuesta);
+            }
+          })
+        });
+      }
+    });
+    
+        
+    
+    
+    $.ajax({
+      url: 'https://diagramas-ksantacr.c9users.io/api/figuras/'+idDiagrama+'',
+      type: 'DELETE',
+      success: function(result) {
+          
+        info_enviar.nodeDataArray.forEach(function(node){
+        node.idDiagrama= idDiagrama;
+        console.log(node);
+        
+        $.ajax({
+            type: "POST",
+            url: 'https://diagramas-ksantacr.c9users.io/api/figuras/',
+            data: node,
+            //data: {"idDiagrama":idDiagrama , "text":"por ajax", "figure":"Circle", "fill":"blue","key":-3,"loc":"100 100" },
+            success: function(respuesta){
+              //console.table(respuesta);
+              console.log(respuesta);
+              
+              
+              
+              
+              
+            }
+          });
+    });}
+    });
+    
+    
+    
+    /*$.ajax({
+      type: "DELETE",
+      url: 'https://diagramas-ksantacr.c9users.io/api/diagramas/4,
+      success: function(respuesta){
+        //console.table(respuesta);
+        console.log(respuesta);
+      }
+    });*/
+    
+    $.ajax({
+              type: 'PUT',
+              url: 'https://diagramas-ksantacr.c9users.io/api/diagramas/'+idDiagrama+'',
+              data: {"position":informacion.modelData.position, "name":informacion.name, "flecha": localStorage.getItem("figura_flecha_")},
+              success: function(respuesta){
+                //console.table(respuesta);
+                console.log("INFO DEL PUT");
+                console.log(respuesta);
+                console.log("FIN DEL PUT");
+              }
+            });
+    
+
+    
+    console.log(info_enviar);
+    
+    myDiagram.isModified = false;
+    //console.log(""+myDiagram.model.toJson());
+    //console.log("Fin Datos guardados");
+  }
+  function load() {
+  //console.log("Inicio load");
+    myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+    loadDiagramProperties();  // do this after the Model.modelData has been brought into memory
+    //console.log("Fin load");
+  }
+  function saveDiagramProperties() {
+    //console.log("Inicio saveDiagramProperties");
+    myDiagram.model.modelData.position = go.Point.stringify(myDiagram.position);
+    //console.log("Fin saveDiagramProperties");
+  }
+  function loadDiagramProperties(e) {
+    //console.log("Inicio loadDiagramProperties");
+    // set Diagram.initialPosition, not Diagram.position, to handle initialization side-effects
+    var pos = myDiagram.model.modelData.position;
+    if (pos) myDiagram.initialPosition = go.Point.parse(pos);
+    //console.log("Fin loadDiagramProperties");
+  }
+</script>
+</head>
+<body onload="init()">
+
+<nav class="menu">
+  <ul class="lista">
+    <li><a href="../diagramas" class="menu_item">Mis flujos</a></li>
+    <!--<button id="SaveButton" onclick="save()">Save</button>-->
+    <li><a href="#" class="menu_item" onclick="save()">Guardar</a></li>
+    <li><a href="../" class="menu_item">Salir</a></li>
+  </ul>
+</nav>
+
+<div id="sample" >
+  <div class="diagrama">
+
+      <div id="myPaletteDiv" style="border: solid 1px black; height: 500px"></div>
+
+      <div id="myDiagramDiv" style="border: solid 1px black; height: 500px"></div>
+
+  </div>
+  <!--<p>
+    This sample demonstrates the ability for the user to drag around a Link as if it were a Node.
+    When either end of the link passes over a valid port, the port is highlighted.
+  </p>
+  <p>
+    The link-dragging functionality is enabled by setting some or all of the following properties:
+    <a>DraggingTool.dragsLink</a>, <a>LinkingTool.isUnconnectedLinkValid</a>, and
+    <a>RelinkingTool.isUnconnectedLinkValid</a>.
+  </p>
+  <p>
+    Note that a Link is present in the <a>Palette</a> so that it too can be dragged out and onto
+    the main Diagram.  Because links are not automatically routed when either end is not connected
+    with a Node, the route is provided explicitly when that Palette item is defined.
+  </p>
+  <p>
+    This also demonstrates several custom Adornments:
+    <a>Part.selectionAdornmentTemplate</a>, <a>Part.resizeAdornmentTemplate</a>, and
+    <a>Part.rotateAdornmentTemplate</a>.
+  </p>
+  <p>
+    Finally this sample demonstrates saving and restoring the <a>Diagram.position</a> as a property
+    on the <a>Model.modelData</a> object that is automatically saved and restored when calling <a>Model.toJson</a>
+    and <a>Model.fromJson</a>.
+  </p>-->
+  <div>
+    <div>
+      <button id="SaveButton" onclick="save()">Save</button>
+      <button onclick="load()">Load</button>
+      Diagrama en JSON
+    </div>
+    <textarea id="mySavedModel" style="width:100%;height:300px;">
+    {
+    "flecha": "NormalArrow",
+  "name": "Kevin",
+  "modelData": {"position":"-211.890625 12.124551391601585"},
+  "nodeDataArray": [
+{"text":"Condición", "figure":"Diamond", "fill":"lightskyblue", "key":-3, "loc":"380 220"},
+{"text":"Fin", "figure":"Circle", "fill":"#CE0620", "key":-4, "loc":"270 340"},
+{"text":"Comentario", "figure":"RoundedRectangle", "fill":"lightyellow", "key":-5, "loc":"620 290"}
+ ],
+  "linkDataArray": [
+{"points":[121.109375,284,151.109375,284,151.109375,324,181.109375,324]},
+{"points":[468.6607360839844,220,478.6607360839844,220,620,220,620,240.15042597332342,620,260.30085194664684,620,270.30085194664684]}
+ ]}
+
+
+    </textarea>
+    
+    
+
+  </div>
+</div>
+
+<script>
+  var diagramaArreglo=[];
+  var figurasArreglo=[];
+  var lineasArreglo=[];
+  var jsonBase = '{"flecha":"NormalArrow","name":"", "modelData": {"position":""},  "nodeDataArray": [],"linkDataArray": []}';
+  var informacion=  $.parseJSON(jsonBase);
+  informacion.nodeDataArray = [];
+   var url = document.URL;
+  var idDiagrama = url.split(/\//)[4];
+  idDiagrama = parseInt(idDiagrama);
+  var flecha_txt = "NormalArrow";
+  $(document).ready(function(){
+    
+    if(localStorage.getItem("figura_flecha_")==null)
+      localStorage.setItem("figura_flecha_", "NormalArrow");
+  //if(localStorage.getItem("figura_flecha_")==null)
+  //  localStorage.setItem("figura_flecha_", "NormalArrow");
+  
+ $("#bntCambiarFlecha_").click(cambiarFlecha);
+  
+   
+  //https://diagramas-ksantacr.c9users.io/api/diagramas/1
+  
+  var diagramaActual;
+  
+  /*var jqxhr = $.getJSON( "https://diagramas-ksantacr.c9users.io/api/diagramas/"+idDiagrama, function() {
+  console.log( "success" );
+});
+jqxhr.complete(function() {
+  console.log( "second complete" );
+});*/
+
+//localStorage.setItem("figura_flecha_", "NormalArrow");
+    $.getJSON( "https://diagramas-ksantacr.c9users.io/api/diagramas/"+idDiagrama, function( data ) {
+      data.forEach(function (item){//diagramaArreglo.push(item)
+        
+        informacion.name = item.name;
+        informacion.modelData.position = item.position;
+        informacion.flecha = item.flecha;
+        flecha_txt =informacion.flecha;
+        //console.log("Hola")
+        
+        console.log("-------asd---->")
+        console.log(informacion);
+        
+      })
+      
+      //console.log(informacion);
+  }).complete(function(){$("textarea#mySavedModel").val(JSON.stringify(informacion)); 
+  
+  //localStorage.setItem("figura_flecha_", "NormalArrow");
+  //console.log("soy la figura -->"+flecha_txt)
+  
+  
+  
+  
+  //console.log("localstorage3"+localStorage.getItem("figura_flecha_"));
+  
+  if(localStorage.getItem('c')=='1'){ 
+    localStorage.setItem("figura_flecha_",flecha_txt);
+    localStorage.setItem('c',null);
+    //localStorage.removeItem('c')
+    setTimeout(function(){ location.reload(); }, 5);
+  }else if(localStorage.getItem('c')=='3'){
+    setTimeout(function(){ location.reload(); }, 5);
+  }
+  
+  //localStorage.setItem("figura_flecha_", );
+  
+  
+  
+  load();  
+  });
+  //Buscar figuras de este diagrama
+  //var figuras;
+    $.getJSON( "https://diagramas-ksantacr.c9users.io/api/figuras/"+idDiagrama, function( data ) {
+      data.forEach(function (item){
+        //figurasArreglo.push(item)
+        //console.log(item)
+        informacion.nodeDataArray.push(item);
+      });
+      //figuras = data;
+      //load();
+      //console.log(informacion);
+    }).complete(function(){$("textarea#mySavedModel").val(JSON.stringify(informacion)); 
+    load();
+      
+    });
+  
+  //Buscar lineas de este diagrama
+  
+    $.getJSON( "https://diagramas-ksantacr.c9users.io/api/puntos/"+idDiagrama, function( data ) {
+      data.forEach(function (item){
+        //lineasArreglo.push(item)
+        var res = item.points.split(",");
+        var points = {"points":[]};
+        for (i = 0; i < res.length; i++) {
+          points.points.push(parseFloat(res[i]));
+          //console.log(res[i]);  
+        }
+        informacion.linkDataArray.push(points);
+      })
+      //lineas = data;
+      
+      
+      //console.log($("#mySavedModel"));
+      load();
+      console.log(data);
+      
+      
+  }).complete(function(data){ $("textarea#mySavedModel").val(JSON.stringify(informacion)); load();});
+  
+ console.log(diagramaArreglo);
+  console.log(figurasArreglo);
+  console.log(lineasArreglo);
+  
+  
+});
+
+
+</script>
+
+<button id="bntCambiarFlecha_">Cambiar flecha</button>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<style>
+  td{padding:.5em;}
+  table, td{border:1px solid #777;}
+</style>
+
+
+<h1>Diagramas</h1>
+<h3>Bienvenido <span id="nombre">{{user.nombre}}</span></h3>
+<a id="user_id" style="display:none;">{{user.id}}</a>
+<table class="listaDiagramas" id="diagramas">
+  
+  
+  
+</table>
+<br></br>
+<a href="" id="nuevo">Nuevo diagrama</a>
+<script>
+
+  
+ 
+ $(document).ready(function(){
+   id= parseInt($("#user_id").text());
+   name= $("#nombre").text();
+localStorage.removeItem('c');
+localStorage.removeItem('figura_flecha_');
+  $.getJSON( "https://diagramas-ksantacr.c9users.io/api/diagramas/user/"+id, function( data ) {
+    
+  var diagramas=[];
+  
+  $.each( data, function( key, val ) {
+    diagramas.push(this);
+    console.log(""+this.name);
+    //var item = "<li><a href="+$(location).attr('href')+"/"+this.id+">"+this.name+"</a></li>";//eliminar
+    var tr = "<tr><td><a href="+$(location).attr('href')+"/"+this.id+">"+this.name+"</a></td>"+
+            "<td><a href='https://diagramas-ksantacr.c9users.io/api/diagramas/eliminarDiagrama/"+parseInt(this.id)+"' id=btn"+this.id+" class='botones btn btn-primary'>Eliminar</a></td></tr>";
+    
+  //var item = "<li><a href="+$(location).attr('href')+"/"+this.id+">"+this.name+"</a> <a href="+$(location).attr('href')+"/eliminarDiagrama/"+this.id+" id=btn"+this.id+" class='botones btn btn-primary'>Eliminar</a></li>";
+    $("#diagramas").append($(tr));
+    
+    //$("#diagramas").append($(item));
+  });
+
+ console.log(diagramas);
+   
+   
+    //$("#nuevo").attr("href", "https://diagramas-ksantacr.c9users.io/api/diagramas/crearDiagrama/"+id);
+    
+    $("#nuevo").click(function(e){
+      e.preventDefault();
+      
+      $.ajax({
+            type: "POST",
+            url: 'https://diagramas-ksantacr.c9users.io/api/diagramas/',
+            data: {"id_usuario": id, "name": "Documento Nuevo", "position": "0 0", "version":"1", "author":name, "flecha": "Circle"},
+            //data: {"idDiagrama":idDiagrama , "text":"por ajax", "figure":"Circle", "fill":"blue","key":-3,"loc":"100 100" },
+            success: function(respuesta){
+              //console.table(respuesta);
+              //console.log(respuesta);
+              location.reload();
+            }
+          });
+      
+      
+    });
+    
+    /*$.ajax({
+            type: "POST",
+            url: 'https://diagramas-ksantacr.c9users.io/api/diagramas/'+(diagramas.length+1),
+            data: {"id":(diagramas.length+1), "name": "Documento Nuevo", "position": "0 0", "version":"1", "author":"Yo"},
+            //data: {"idDiagrama":idDiagrama , "text":"por ajax", "figure":"Circle", "fill":"blue","key":-3,"loc":"100 100" },
+            success: function(respuesta){
+              //console.table(respuesta);
+              console.log(respuesta);
+            }
+          });*/
+    
+  });
+  
+  $(".botones").click(function(e){
+    e.preventDefault();
+    //console.log($(this).attr("href"))
+    
+    $.ajax({
+      url: 'https://diagramas-ksantacr.c9users.io/api/diagramas/'+parseInt($(this).attr("href"))+'',
+      type: 'DELETE',
+      success: function(result) { 
+        
+        //console.log(result);
+        $("#diagramas").empty();
+        $.getJSON( "https://diagramas-ksantacr.c9users.io/api/diagramas", function( data ) {
+    
+          var diagramas=[];
+          
+          
+          $.each( data, function( key, val ) {
+            diagramas.push(this);
+            console.log(""+this.name);
+            
+            var item = "<li><a href="+$(location).attr('href')+"/"+this.id+">"+this.name+"</a></li>";//eliminar
+            //var item = "<li><a href="+$(location).attr('href')+"/"+this.id+">"+this.name+"</a> <a href='"+this.id+"' id=btn"+this.id+" class='botones'>Eliminar</a></li>";
+            $("#diagramas").append($(item));
+          });
+          
+          });
+        
+      }
+  });
+    
+  })
+ 
+});
+
+
+
+</script>
